@@ -22,9 +22,9 @@ sha512sums=('af63429d0177f5881df437087b669fe171370b647ce4ca7143750a9ca462510300f
             '54e8bab3fe92fc4d1bea1b6e7f40dfee34f80d2e4299483d62e5d0aea8257dc4a30eaae69a2b8acc7be5b0d5e9c4312072449ce963e2d864c26af4677b3af448')
 
 package() {
-    install -m 755 sb.py -D ${pkgdir}/var/sb
-    install -m 755 sb.service -D ${pkgdir}/lib/systemd/system
-    install -m 755 sb.timer -D ${pkgdir}/lib/systemd/system
-    install -m 644 LICENSE -D ${pkgdir}/usr/share/licenses/sb
+    install -m 755 sb.py -D ${pkgdir}/var/sb/sb.py
+    install -m 755 sb.service -D ${pkgdir}/lib/systemd/system/sb.service
+    install -m 755 sb.timer -D ${pkgdir}/lib/systemd/system/sb.timer
+    install -m 644 LICENSE -D ${pkgdir}/usr/share/licenses/sb/LICENSE
 
 }
