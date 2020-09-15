@@ -1,0 +1,9 @@
+[Unit]
+Description=Everyday do auto upload. (MRSB)
+
+[Timer]
+OnCalendar=*-*-* 09:00:00
+Unit=sb.service
+
+[Install]
+WantedBy=timers.target

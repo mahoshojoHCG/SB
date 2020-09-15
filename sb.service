@@ -1,0 +1,9 @@
+[Unit]
+Description=Upload ststus. (SB)
+
+[Service]
+Type=oneshot
+WorkingDirectory=/var/sb
+ExecStart=/var/sb/sb.py yourId yourPassword
+KillSignal=SIGINT
+User=root
