@@ -8,8 +8,8 @@ url="https://github.com/openwrt-dev/po2lmo.git"
 license=('GPL3')
 depends=('python-selenium' 'python')
 makedepends=()
-optdepends=('chrome-driver: use chrome driver'
-            'chromium-driver: use chromium driver')
+optdepends=('chromedriver: use chrome driver'
+            'chromium: use chromium driver')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 source=('sb.py'
