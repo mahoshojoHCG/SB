@@ -24,7 +24,6 @@ namespace AutoReport
 
         private async Task GenerateReportAsync(ReportInformation info, ChromeDriver driver, CancellationToken token)
         {
-            driver.ExecuteScript("add()");
             await Task.Delay(1000, token);
             _logger.LogInformation(
                 $"Your generated location is {driver.FindElementByXPath("/html/body/div[1]/div[3]/div[1]/input").GetProperty("value")}.");
@@ -118,6 +117,7 @@ namespace AutoReport
                 if (reportStatus.Text == "审核状态：未提交")
                 {
                     _logger.LogInformation($"But report for {info.UserName} has not submitted, trying to submit.");
+                    //TODO: Click that modify button
                     await GenerateReportAsync(info, driver, token);
                 }
 
@@ -125,6 +125,7 @@ namespace AutoReport
             }
             else
             {
+                driver.ExecuteScript("add()");
                 await GenerateReportAsync(info, driver, token);
             }
         }
