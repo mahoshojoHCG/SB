@@ -8,3 +8,6 @@ ExecStart=/usr/bin/autoreport
 KillSignal=SIGINT
 Restart=always
 User=root
+
+[Install]
+WantedBy=multi-user.target
