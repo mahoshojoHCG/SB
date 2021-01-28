@@ -25,6 +25,6 @@ cp ./bin/release/net5.0/win-x64/publish/*.exe ../package/win-x64-no-self-contain
 cd ../package
 tar -cJvf hit-autoreport-linux-x64-self-contained.tar.xz linux-x64-self-contained
 tar -cJvf hit-autoreport-win-x64-self-contained.tar.xz win-x64-self-contained
-tar -cJvf hit-autoreport-linux-x64-self-no-contained.tar.xz linux-x64-no-self-contained
-tar -cJvf hit-autoreport-win-x64-self-no-contained.tar.xz win-x64-no-self-contained
+tar -cJvf hit-autoreport-linux-x64-no-self-contained.tar.xz linux-x64-no-self-contained
+tar -cJvf hit-autoreport-win-x64-no-self-no-contained.tar.xz win-x64-no-self-contained
 mv *.tar.xz ..
