@@ -114,11 +114,9 @@ namespace AutoReport
                 _logger.LogInformation($"Report for {info.UserName} has generated today.");
                 var reportStatus = driver.FindElementByXPath("/html/body/div[1]/div[2]/div[2]/div[1]/div[2]");
                 if (reportStatus.Text == "审核状态：未提交")
-                {
                     _logger.LogInformation($"But report for {info.UserName} has not submitted, trying to submit.");
-                    //TODO: Click that modify button
-                    await GenerateReportAsync(info, driver, token);
-                }
+                //TODO: Click that modify button
+                //await GenerateReportAsync(info, driver, token);
 
                 _logger.LogInformation($"User {info.UserName} has reported, and status is {reportStatus.Text}");
             }

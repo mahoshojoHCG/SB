@@ -18,8 +18,6 @@ namespace AutoReport
             for (var line = await database.ReadLineAsync(); line != null; line = await database.ReadLineAsync())
             {
                 var content = line.Split('\t');
-                if (content[6] != "A")
-                    continue;
                 var geo = new GeoInfo
                 {
                     GeoNameId = int.Parse(content[0]),
@@ -41,8 +39,6 @@ namespace AutoReport
             for (var line = database.ReadLine(); line != null; line = database.ReadLine())
             {
                 var content = line.Split('\t');
-                if (content[6] != "A")
-                    continue;
                 var geo = new GeoInfo
                 {
                     GeoNameId = int.Parse(content[0]),

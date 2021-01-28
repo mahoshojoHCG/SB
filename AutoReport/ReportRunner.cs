@@ -29,7 +29,16 @@ namespace AutoReport
                 if (config.ReportAt == DateTime.Now.Hour)
                 {
                     _logger.LogInformation("Report begin.");
-                    foreach (var (_, info) in config.Reports) await _reporter.ReportAsync(info, token);
+                    foreach (var (_, info) in config.Reports)
+                        try
+                        {
+                            await _reporter.ReportAsync(info, token);
+                        }
+                        catch (Exception e)
+                        {
+                            _logger.LogError(e.ToString());
+                        }
+
                     _logger.LogInformation($"Report finished, total report {config.Reports.Count}.");
                 }
 
