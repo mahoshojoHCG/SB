@@ -3,7 +3,7 @@ Description=Auto generate and upload your health status.
 After=network.target
 
 [Service]
-WorkingDirectory=/usr/share/autoreport
+WorkingDirectory=/usr/share/AutoReport
 ExecStart=/usr/bin/autoreport
 KillSignal=SIGINT
 Restart=always
