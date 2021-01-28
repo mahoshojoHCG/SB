@@ -5,6 +5,8 @@ fi
 
 install -Dvdm755 . $PREFIX/usr/share/AutoReport
 install -Dvm655 *.dll $PREFIX/usr/share/AutoReport
+install -Dvm655 *.a $PREFIX/usr/share/AutoReport
+install -Dvm655 *.so $PREFIX/usr/share/AutoReport
 install -Dvm655 *.json $PREFIX/usr/share/AutoReport
 install -Dvm655 CN.txt $PREFIX/usr/share/AutoReport
 install -Dvm755 AutoReport $PREFIX/usr/share/AutoReport
