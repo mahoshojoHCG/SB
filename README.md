@@ -12,7 +12,7 @@
 
 ## 安装
 
-- 与之前一样，请安装`chromium-driver`或者`chrome-driver`，其他的倒不用了。
+- 与之前一样，请安装`chromium-driver`或者`chrome-driver`，其他的倒不用了，Windows就[下载](https://chromedriver.chromium.org/downloads)之后放在文件夹里就可以了。
 
 - 下载最新的Release
 
@@ -24,11 +24,23 @@
   sudo ./install.sh
   ```
 
+  额外地，如果您使用基于Debian的发行版，可以使用dpkg安装
+
+  ``` shell
+  sudo dpkg -i hit-autoreport-amd64.deb
+  ```
+
 - 启用服务（仅适用于Linux）
 
   ``` shell 
   sudo systemctl enable AutoReport.service --now
   ```
+
+  如果使用包管理安装，则无需执行此步骤。
+
+- 启动主程序（仅适用于Windows）
+
+  Windows还未作做成服务形式，暂时请直接双击启动。
 
 - 获取你的位置
 
@@ -40,6 +52,8 @@
   sudo reportctl --add --name 你的账号
   ```
 
+  *Windows同理，但无需输入sudo（下同）*
+
   然后按照提示输入经纬度和密码，你的密码**没有**被明文储存（不知道比之前的高到哪里去了）。注意经纬度请按照度/分/秒的格式输入，由于我国在东北半球，就没有负数的输入。
 
 然后就大功告成了，如果你要删除账号，请运行
@@ -50,11 +64,11 @@ sudo reportctl --remove --name 你的账号
 
 这样就不会自动运行。
 
-默认上报时间是九点，如果要修改，请修改`/etc/AutoReport/config.yml`。
+默认上报时间是九点（**系统时间，不一定是北京时间**），如果要修改，请修改`/etc/AutoReport/config.yml`。
 
 ## 卸载
 
-还没做呢（大概率不会做了），可以看着`install.sh`里的删。
+使用dpkg卸载，或者看着`install.sh`里的删。
 
 ## 编译
 
@@ -62,7 +76,7 @@ sudo reportctl --remove --name 你的账号
 
 ## 感谢
 
-http://www.geonames.org/ ~~这样大家就不会因为不会英语输反经纬度了呢~~
+[GeoNames](http://www.geonames.org/) ~~这样大家就不会因为不会英语输反经纬度了呢~~
 
 [xrervip](https://github.com/xrervip) 初版逻辑
 
