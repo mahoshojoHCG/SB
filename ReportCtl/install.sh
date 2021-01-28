@@ -1,5 +1,5 @@
-if [-z $PREFIX];
-then 
+if [ ! "$PREFIX"];
+then
 PREFIX="/"
 fi
 
