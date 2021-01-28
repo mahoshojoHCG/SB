@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -74,7 +73,7 @@ namespace AutoReport
                 option.AddArgument("--no-sandbox");
             using var driver = new ChromeDriver(option);
             //Set geolocation
-            driver.ExecuteChromeCommand("Emulation.setGeolocationOverride", new Dictionary<string, object>
+            driver.ExecuteChromeCommand("Emulation.setGeolocationOverride", new()
             {
                 {"latitude", info.Latitude},
                 {"longitude", info.Longitude},

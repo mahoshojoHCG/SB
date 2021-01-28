@@ -70,7 +70,7 @@ await Parser.Default.ParseArguments<CommandLineOption>(args).WithParsedAsync(asy
         Console.WriteLine($"You are at {result.Value.Name}.");
 
         var config = deserializer.Deserialize<AppConfig>(await File.ReadAllTextAsync(StaticConfig.ConfigFile));
-        config.Reports[o.UserName] = new ReportInformation
+        config.Reports[o.UserName] = new()
         {
             UserName = o.UserName,
             DeEncryptedPassword = password,

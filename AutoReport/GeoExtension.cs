@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using KdTree;
@@ -14,7 +13,8 @@ namespace AutoReport
         public static async Task<KdTree<double, GeoInfo>> GetKdTreeAsync()
         {
             var kd = new KdTree<double, GeoInfo>(2, new DoubleMath());
-            using var database = new StreamReader(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CN.txt"), Encoding.UTF8);
+            using var database = new StreamReader(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CN.txt"),
+                Encoding.UTF8);
             for (var line = await database.ReadLineAsync(); line != null; line = await database.ReadLineAsync())
             {
                 var content = line.Split('\t');
@@ -27,7 +27,7 @@ namespace AutoReport
                     Latitude = double.Parse(content[4]),
                     Longitude = double.Parse(content[5])
                 };
-                kd.Add(new[] { geo.Latitude, geo.Longitude }, geo);
+                kd.Add(new[] {geo.Latitude, geo.Longitude}, geo);
             }
 
             return kd;
@@ -36,7 +36,8 @@ namespace AutoReport
         public static IServiceCollection AddGeoInformation(this IServiceCollection service)
         {
             var kd = new KdTree<double, GeoInfo>(2, new DoubleMath());
-            using var database = new StreamReader(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CN.txt"), Encoding.UTF8);
+            using var database = new StreamReader(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CN.txt"),
+                Encoding.UTF8);
             for (var line = database.ReadLine(); line != null; line = database.ReadLine())
             {
                 var content = line.Split('\t');
@@ -49,7 +50,7 @@ namespace AutoReport
                     Latitude = double.Parse(content[4]),
                     Longitude = double.Parse(content[5])
                 };
-                kd.Add(new[] { geo.Latitude, geo.Longitude }, geo);
+                kd.Add(new[] {geo.Latitude, geo.Longitude}, geo);
             }
 
             service.AddSingleton<IKdTree<double, GeoInfo>>(kd);
