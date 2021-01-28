@@ -13,7 +13,7 @@ install -Dvm755 AutoReport $PREFIX/usr/share/AutoReport
 install -Dvm755 ReportCtl $PREFIX/usr/share/AutoReport
 install -Dvm755 AutoReport.service $PREFIX/lib/systemd/system
 install -Dvm600 config.yml $PREFIX/etc/AutoReport
-ln -s $PREFIX/usr/bin/autoreport $PREFIX/usr/share/AutoReport/AutoReport
-ln -s $PREFIX/usr/bin/reportctl $PREFIX/usr/share/AutoReport/ReportCtl
+ln -s $PREFIX/usr/share/AutoReport/AutoReport $PREFIX/usr/bin/autoreport
+ln -s $PREFIX/usr/share/AutoReport/ReportCtl $PREFIX/usr/bin/reportctl
 
 echo Install Completed
