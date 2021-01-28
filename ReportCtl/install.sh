@@ -11,6 +11,7 @@ install -Dvm655 *.json $PREFIX/usr/share/AutoReport
 install -Dvm655 CN.txt $PREFIX/usr/share/AutoReport
 install -Dvm755 AutoReport $PREFIX/usr/share/AutoReport
 install -Dvm755 ReportCtl $PREFIX/usr/share/AutoReport
+install -Dvm755 createdump $PREFIX/usr/share/AutoReport
 install -Dvm755 AutoReport.service $PREFIX/lib/systemd/system
 install -Dvm600 config.yml $PREFIX/etc/AutoReport
 ln -s $PREFIX/usr/share/AutoReport/AutoReport $PREFIX/usr/bin/autoreport
