@@ -1,3 +1,4 @@
+rm *.deb
 rm -rf dpkg
 mkdir -p dpkg/DEBIAN
 cp PackageFile/control dpkg/DEBIAN
