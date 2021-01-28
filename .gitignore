@@ -444,3 +444,7 @@ $RECYCLE.BIN/
 #GeoDatabase
 CN.txt
 CN.zip
+
+#Package File
+dpkg
+*.deb

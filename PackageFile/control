@@ -1,0 +1,10 @@
+Package: hit-autoreport
+Version: 0.1.1
+Section: utils
+Priority: optional
+Depends: dotnet-runtime-5.0, chromium-driver | chrome-driver
+Architecture: amd64
+Installed-Size: 4096
+Maintainer: mahoshojoHCG
+Provides: autoreport, reportctl
+Description: Auto generate and upload your health status.

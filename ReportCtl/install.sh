@@ -12,9 +12,10 @@ install -Dvm655 CN.txt $PREFIX/usr/share/AutoReport
 install -Dvm755 AutoReport $PREFIX/usr/share/AutoReport
 install -Dvm755 ReportCtl $PREFIX/usr/share/AutoReport
 install -Dvm755 createdump $PREFIX/usr/share/AutoReport
-install -Dvm755 AutoReport.service $PREFIX/lib/systemd/system
+install -Dvm755 AutoReport.service $PREFIX/lib/systemd/system/AutoReport.service
 install -Dvm600 config.yml $PREFIX/etc/AutoReport/config.yml
-ln -s $PREFIX/usr/share/AutoReport/AutoReport $PREFIX/usr/bin/autoreport
-ln -s $PREFIX/usr/share/AutoReport/ReportCtl $PREFIX/usr/bin/reportctl
+mkdir $PREFIX/usr/bin
+ln -s ../share/AutoReport/AutoReport $PREFIX/usr/bin/autoreport
+ln -s ../share/AutoReport/ReportCtl $PREFIX/usr/bin/reportctl
 
 echo Install Completed
