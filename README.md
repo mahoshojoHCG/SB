@@ -21,7 +21,7 @@
 
 - 打开解压的文件夹并运行安装脚本（仅适用于Linux）
 
-  ``` shell
+  ``` shell--name
   sudo ./install.sh
   ```
 
@@ -38,7 +38,7 @@
 - 添加账户信息
 
   ``` shell
-  sudo reportctl --add 你的账号
+  sudo reportctl --add --name 你的账号
   ```
 
   然后按照提示输入经纬度和密码，你的密码**没有**被明文储存（不知道比之前的高到哪里去了）。注意经纬度请按照度/分/秒的格式输入，由于我国在东北半球，就没有负数的输入。
@@ -46,7 +46,7 @@
 然后就大功告成了，如果你要删除账号，请运行
 
 ``` shell
-sudo reportctl --remove 你的账号
+sudo reportctl --remove --name 你的账号
 ```
 
 这样就不会自动运行。
