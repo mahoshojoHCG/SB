@@ -1,0 +1,10 @@
+[Unit]
+Description=Auto generate and upload your health status.
+After=network.target
+
+[Service]
+WorkingDirectory=/usr/share/autoreport
+ExecStart=/usr/bin/autoreport
+KillSignal=SIGINT
+Restart=always
+User=root
