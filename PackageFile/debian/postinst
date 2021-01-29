@@ -1,4 +1,5 @@
 #/bin/sh
 
 systemctl daemon-reload
-systemctl enable AutoReport.service --now
+systemctl enable AutoReport.service
+systemctl restart AutoReport.service
