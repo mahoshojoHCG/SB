@@ -448,3 +448,5 @@ CN.zip
 #Package File
 dpkg
 *.deb
+package/
+*.xz
