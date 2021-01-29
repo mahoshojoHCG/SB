@@ -76,7 +76,7 @@ namespace AutoReport
             driver.ExecuteChromeCommand("Browser.grantPermissions", new()
             {
                 {"origin", "https://xg.hit.edu.cn/"},
-                {"permissions", new[]{"geolocation"}}
+                {"permissions", new[] {"geolocation"}}
             });
             driver.ExecuteChromeCommand("Emulation.setGeolocationOverride", new()
             {
@@ -125,7 +125,9 @@ namespace AutoReport
                     await GenerateReportAsync(info, driver, token);
                 }
                 else
+                {
                     _logger.LogInformation($"User {info.UserName} has reported, and status is {reportStatus.Text}");
+                }
             }
             else
             {
