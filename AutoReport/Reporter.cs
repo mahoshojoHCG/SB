@@ -81,7 +81,7 @@ namespace AutoReport
             });
             //Login
             driver.Url = "https://xg.hit.edu.cn/zhxy-xgzs/xg_mobile/shsj/loginChange";
-            await Task.Delay(1000, token);
+            await Task.Delay(10000, token);
             if (driver.Url != "https://xg.hit.edu.cn/zhxy-xgzs/xg_mobile/shsj/loginChange")
                 throw new NotSupportedException(
                     "Login flow of the remote system has changed, " +
@@ -115,8 +115,8 @@ namespace AutoReport
                 var reportStatus = driver.FindElementByXPath("/html/body/div[1]/div[2]/div[2]/div[1]/div[2]");
                 if (reportStatus.Text == "审核状态：未提交")
                     _logger.LogInformation($"But report for {info.UserName} has not submitted, trying to submit.");
-                //TODO: Click that modify button
-                //await GenerateReportAsync(info, driver, token);
+                driver.FindElementByXPath("/html/body/div[1]/div[2]/div[2]/div[2]").Click();
+                await GenerateReportAsync(info, driver, token);
 
                 _logger.LogInformation($"User {info.UserName} has reported, and status is {reportStatus.Text}");
             }

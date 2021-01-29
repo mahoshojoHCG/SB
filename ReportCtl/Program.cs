@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using AutoReport;
 using CommandLine;
 using Geolocation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using ReportCtl;
 using YamlDotNet.Serialization;
 
@@ -93,5 +95,27 @@ await Parser.Default.ParseArguments<CommandLineOption>(args).WithParsedAsync(asy
         config.Reports.Remove(o.UserName);
         await File.WriteAllTextAsync(StaticConfig.ConfigFile, serializer.Serialize(config));
         Console.WriteLine("Config removed.");
+    }
+    else if (o.Report)
+    {
+        var config = deserializer.Deserialize<AppConfig>(await File.ReadAllTextAsync(StaticConfig.ConfigFile));
+        if (!config.Reports.ContainsKey(o.UserName))
+        {
+            Console.WriteLine("User not found.");
+            Environment.Exit(1);
+        }
+
+        var service = new ServiceCollection();
+        service.AddGeoInformation();
+        service.AddLogging(builder =>
+        {
+            builder.AddConsole();
+            builder.AddFile(options => { options.RootPath = StaticConfig.LogLocation; });
+        });
+        service.AddSingleton<Reporter>();
+        await using var provider = service.BuildServiceProvider();
+        var reporter = provider.GetService<Reporter>();
+        if (reporter != null)
+            await reporter.ReportAsync(config.Reports[o.UserName]);
     }
 });
