@@ -24,13 +24,13 @@ namespace AutoReport
         private async Task GenerateReportAsync(ReportInformation info, ChromeDriver driver, CancellationToken token)
         {
             await Task.Delay(1000, token);
-            _logger.LogInformation(
-                $"Your generated location is {driver.FindElementByXPath("/html/body/div[1]/div[3]/div[1]/input").GetProperty("value")}.");
             _logger.LogInformation("Make sure you acknowledge this:");
             _logger.LogInformation("1.全国中高风险地区");
             _logger.LogInformation("2.假期期间做好个人防护");
             _logger.LogInformation("3.个人及共同居住人有疫情相关情况的，及时向学校报告");
             await Task.Delay(1000, token);
+            _logger.LogInformation(
+                $"Your generated location is {driver.FindElementByXPath("/html/body/div[1]/div[3]/div[1]/input").GetProperty("value")}.");
             driver.FindElementByXPath("/html/body/div[7]/input").Click();
             await Task.Delay(100, token);
             driver.ExecuteScript("save()");
@@ -38,7 +38,7 @@ namespace AutoReport
             driver.FindElementByXPath("/html/body/div[13]/div[3]/a[2]").Click();
             await Task.Delay(100, token);
             _logger.LogInformation("Report has generated.");
-            await Task.Delay(1500, token);
+            await Task.Delay(5000, token);
             var reportStatus = driver.FindElementByXPath("/html/body/div[1]/div[2]/div[2]/div[1]/div[2]");
             if (reportStatus.Text == "审核状态：待辅导员审核")
                 _logger.LogInformation("Report succeed!");
@@ -73,6 +73,11 @@ namespace AutoReport
                 option.AddArgument("--no-sandbox");
             using var driver = new ChromeDriver(option);
             //Set geolocation
+            driver.ExecuteChromeCommand("Browser.grantPermissions", new()
+            {
+                {"origin", "https://xg.hit.edu.cn/"},
+                {"permissions", new[]{"geolocation"}}
+            });
             driver.ExecuteChromeCommand("Emulation.setGeolocationOverride", new()
             {
                 {"latitude", info.Latitude},
@@ -114,11 +119,13 @@ namespace AutoReport
                 _logger.LogInformation($"Report for {info.UserName} has generated today.");
                 var reportStatus = driver.FindElementByXPath("/html/body/div[1]/div[2]/div[2]/div[1]/div[2]");
                 if (reportStatus.Text == "审核状态：未提交")
+                {
                     _logger.LogInformation($"But report for {info.UserName} has not submitted, trying to submit.");
-                driver.FindElementByXPath("/html/body/div[1]/div[2]/div[2]/div[2]").Click();
-                await GenerateReportAsync(info, driver, token);
-
-                _logger.LogInformation($"User {info.UserName} has reported, and status is {reportStatus.Text}");
+                    driver.FindElementByXPath("/html/body/div[1]/div[2]/div[2]/div[2]").Click();
+                    await GenerateReportAsync(info, driver, token);
+                }
+                else
+                    _logger.LogInformation($"User {info.UserName} has reported, and status is {reportStatus.Text}");
             }
             else
             {
